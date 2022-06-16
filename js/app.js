@@ -45,3 +45,43 @@ const createCloseButton = (elem) => {
     elem.appendChild(span);
 }
 
+
+let nowDate = new Date();
+console.log(nowDate.getDay());
+console.log(nowDate.getMonth());
+console.log(nowDate.getDate());
+console.log()
+
+const fillDates = (date = nowDate) => {
+    let currentDay = nowDate.getDay();
+    let monday = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + 1 - currentDay);
+    console.log(monday.getDay())
+    let tuesday = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + 2 - currentDay);
+    console.log(tuesday.getDay())
+    let wednesday = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + 3 - currentDay);
+    console.log(wednesday.getDay())
+    let thursday = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + 4 - currentDay);
+    console.log(thursday.getDay())
+    let friday = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + 5 - currentDay);
+    console.log(friday.getDay())
+    let saturday = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + 6 - currentDay);
+    console.log(saturday.getDay())
+    let sunday = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + 7 - currentDay);
+    console.log(sunday.getDay())
+    let dates = [monday, tuesday, wednesday, thursday, friday, saturday, sunday];
+
+
+    let days = document.querySelectorAll(".head__text");
+    console.log(days);
+    for (let i = 0; i < days.length-1; i++) {
+        console.log(days[i].innerHTML);
+        let addMonth = dates[i].getMonth() < 10 ? `0${dates[i].getMonth()}` : dates[i].getMonth();
+        let addString = `, ${dates[i].getDate()} . ${addMonth}`;
+        days[i].innerHTML += addString
+    }
+
+
+}
+
+fillDates();
+
