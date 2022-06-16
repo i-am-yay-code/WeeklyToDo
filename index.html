@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+</head>
+
+<body>
+    <header>
+        <div class="header__inputs">
+            <input type="text" id="myInput" placeholder="Enter your future task here">
+        </div>
+    </header>
+    <div class="container">
+        <div class="block1">
+            <div class="head">
+                <div class="head__text"> Monday </div>
+                <button onclick="newElement(1)" class="addBtn">Add</button>
+            </div>
+
+            <div class="tasks">
+                <ul id="day1">
+                    <li>One</li>
+                    <li>One</li>
+                    <li>One</li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="block2">
+            <div class="head">
+                <div class="head__text"> Tuesday </div>
+                <button onclick="newElement(2)" class="addBtn">Add</button>
+            </div>
+            <div class="tasks">
+                <ul id="day2">
+
+                </ul>
+            </div>
+        </div>
+        <div class="block3">
+            <div class="head">
+                <div class="head__text"> Wednesday </div>
+                <button onclick="newElement(3)" class="addBtn">Add</button>
+            </div>
+            <div class="tasks">
+                <ul id="day3">
+
+                </ul>
+            </div>
+        </div>
+        <div class="block4">
+            <div class="head">
+                <div class="head__text"> Thursday </div>
+                <button onclick="newElement(4)" class="addBtn">Add</button>
+            </div>
+            <div class="tasks">
+                <ul id="day4">
+
+                </ul>
+            </div>
+        </div>
+        <div class="block5">
+            <div class="head">
+                <div class="head__text"> Friday </div>
+                <button onclick="newElement(5)" class="addBtn">Add</button>
+            </div>
+            <div class="tasks">
+                <ul id="day5">
+
+                </ul>
+            </div>
+        </div>
+        <div class="block6">
+            <div class="head">
+                <div class="head__text"> Saturday </div>
+                <button onclick="newElement(6)" class="addBtn">Add</button>
+            </div>
+            <div class="tasks">
+                <ul id="day6">
+
+                </ul>
+            </div>
+        </div>
+        <div class="block7">
+            <div class="head">
+                <div class="head__text"> Sunday </div>
+                <button onclick="newElement(7)" class="addBtn">Add</button>
+            </div>
+            <div class="tasks">
+                <ul id="day7">
+
+                </ul>
+            </div>
+        </div>
+        <div class="block8" id="notes">
+            <div class="head">
+                <div class="head__text"> Notes </div>
+            </div>
+            <textarea name="note" id="notes" cols="30" rows="10"></textarea>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+@import "nullstyle.scss";
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;700&display=swap');
+
+$Small: 576px;
+$Medium: 768px;
+$Large: 992px;
+
+body {
+    font-size: 100%;
+    font-family: 'Raleway', sans-serif;
+    background-color: #8EC5FC;
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #e0c0fd 100%);
+}
+
+.header__inputs {
+    width: 100%;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 0 0 25px 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.head__text {
+    margin-right: 20px;
+}
+
+#myInput {
+    width: 80.5%;
+    font-size: 1.2rem;
+    height: 2.5rem;
+    border: solid 1px rgb(214, 214, 214);
+    border-radius: 15px;
+    padding-left: 10px;
+    margin-right: 40px;
+}
+
+.addBtn {
+
+    width: 50px;
+    height: 1.5rem;
+}
+
+
+.container {
+
+    padding: 0.3rem;
+    display: grid;
+    grid-template-columns: repeat(4, 300px);
+    grid-template-rows: repeat(2, 340px);
+    column-gap: 0.2rem;
+    row-gap: 0.3rem;
+    justify-content: center;
+
+}
+
+.container>div {
+    background: #fff;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.head {
+    font-size: 1.2rem;
+    padding-top: 10px;
+    text-align: center;
+    padding-bottom: 7px;
+    border-bottom: solid 1px rgb(221, 221, 221);
+    margin-bottom: 5px;
+}
+
+.tasks {
+    height: 290px;
+    width: 100%;
+    align-self: center;
+    cursor: pointer;
+    overflow-y: scroll;
+}
+
+.tasks::-webkit-scrollbar {
+    width: 0px;
+}
+
+.checked {
+    text-decoration: line-through;
+    background-color: rgb(229, 250, 223);
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+
+}
+
+ul>li {
+    height: 40px;
+    font-size: 1.2rem;
+    position: relative;
+    padding-top: 8px;
+    padding-left: 10px;
+}
+
+ul>li>span {
+    position: absolute;
+    right: 20px;
+    top: 5px;
+    font-size: 1.7rem;
+}
+
+
+
+.block8>.head>.head__text {
+    font-style: italic;
+    font-size: 1.3rem;
+}
+
+#notes {
+    text-align: start;
+    width: 300px;
+    height: 340px;
+    font-size: 1.2rem;
+    line-break: auto;
+    line-height: 1.2rem;
+}
+
+#notes::-webkit-scrollbar {
+    width: 0px;
+}
