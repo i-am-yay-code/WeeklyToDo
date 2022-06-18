@@ -1,8 +1,6 @@
 "use strict";
 //Main function to create new plans
-const newElement = (day) => {
-
-    let taskText = document.querySelector('#myInput').value;
+const newElement = (day, taskText = document.querySelector('#myInput').value, addToLocal = true) => {
 
 
     //Handle empty string
@@ -26,7 +24,18 @@ const newElement = (day) => {
     createCloseButton(newPlan);
 
     //Making the button deletes a plan
-    newPlan.childNodes[1].onclick = () => { newPlan.style.display = "none" };
+    newPlan.childNodes[1].onclick = () => {
+        //Make the plan dissapear
+        newPlan.style.display = "none"
+
+        //Delete it from local storage
+        let tasksInLocalStorage = localStorage.getItem(`day${day}`)
+        //If there`s some tasks on this day, try to delete our task
+        //If the local storage for this day is null, continue
+        if (tasksInLocalStorage != null) {
+            localStorage.setItem(`day${day}`, tasksInLocalStorage.replace(`\n${taskText}`, ''));
+        }
+    };
 
     //Make the plans cuold be checked
     //Toggling class "checked"
@@ -35,6 +44,12 @@ const newElement = (day) => {
     //Cleaning text from input
     document.querySelector("#myInput").value = "";
 
+
+    //Add an element to localStorage
+    if (addToLocal === true) {
+        let tasksInLocalStorage = localStorage.getItem(`day${day}`) === null ? "" : localStorage.getItem(`day${day}`)
+        localStorage.setItem(`day${day}`, tasksInLocalStorage + "\n" + taskText);
+    }
 }
 //A function for creating a close button
 const createCloseButton = (elem) => {
@@ -45,43 +60,74 @@ const createCloseButton = (elem) => {
     elem.appendChild(span);
 }
 
-
+//Creating a Date obj
+//We will use it to fill the dates in the schedule
 let nowDate = new Date();
-console.log(nowDate.getDay());
-console.log(nowDate.getMonth());
-console.log(nowDate.getDate());
-console.log()
 
+
+//Function to fill all the days with dates that corresponds them
 const fillDates = (date = nowDate) => {
     let currentDay = nowDate.getDay();
     let monday = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + 1 - currentDay);
-    console.log(monday.getDay())
     let tuesday = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + 2 - currentDay);
-    console.log(tuesday.getDay())
     let wednesday = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + 3 - currentDay);
-    console.log(wednesday.getDay())
     let thursday = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + 4 - currentDay);
-    console.log(thursday.getDay())
     let friday = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + 5 - currentDay);
-    console.log(friday.getDay())
     let saturday = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + 6 - currentDay);
-    console.log(saturday.getDay())
     let sunday = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate() + 7 - currentDay);
-    console.log(sunday.getDay())
     let dates = [monday, tuesday, wednesday, thursday, friday, saturday, sunday];
 
-
+    // Appending the dates to the text inside .head__text
     let days = document.querySelectorAll(".head__text");
-    console.log(days);
-    for (let i = 0; i < days.length-1; i++) {
-        console.log(days[i].innerHTML);
-        let addMonth = dates[i].getMonth() < 10 ? `0${dates[i].getMonth()}` : dates[i].getMonth();
+    for (let i = 0; i < days.length - 1; i++) {
+        let addMonth = dates[i].getMonth()+1 < 10 ? `0${dates[i].getMonth()+1}` : dates[i].getMonth();
         let addString = `, ${dates[i].getDate()} . ${addMonth}`;
-        days[i].innerHTML += addString
+        days[i].innerHTML += addString;
     }
+}
 
+
+//Function that uses localStorage obj to
+//refill all the tasks from the past usage
+const resetTasks = () => {
+
+    //Get acces to every day in storage
+    for (let i = 1; i < 7; i++) {
+        try {
+            //get saved tasks for this day
+            let tasksTemporary = localStorage.getItem(`day${i}`);
+
+            //Get an acces to every task
+            for (let elem of tasksTemporary.split("\n")) {
+                //check if it is null
+                if (elem === null || elem === "") {
+                    continue;
+                }
+                //Creating new tasks with old names
+                //Last argument means not to add the task to local storage again
+                newElement(i, elem, false);
+            }
+        }
+        //If there`s nothing in localStorage for this day, 
+        //a handler will catch an error
+        catch (TypeError) {
+            console.log(`There's no saved tasks on day${i}`)
+        }
+
+    }
+}
+
+
+const saveNotes = () => {
+
+    
 
 }
 
+
+//calling a function to fill the dates
 fillDates();
+
+//calling a function to reset the tasks
+resetTasks();
 
