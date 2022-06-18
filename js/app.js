@@ -80,7 +80,7 @@ const fillDates = (date = nowDate) => {
     // Appending the dates to the text inside .head__text
     let days = document.querySelectorAll(".head__text");
     for (let i = 0; i < days.length - 1; i++) {
-        let addMonth = dates[i].getMonth()+1 < 10 ? `0${dates[i].getMonth()+1}` : dates[i].getMonth();
+        let addMonth = dates[i].getMonth() + 1 < 10 ? `0${dates[i].getMonth() + 1}` : dates[i].getMonth();
         let addString = `, ${dates[i].getDate()} . ${addMonth}`;
         days[i].innerHTML += addString;
     }
@@ -117,12 +117,21 @@ const resetTasks = () => {
     }
 }
 
-
+//A function to save notes to local storage
 const saveNotes = () => {
-
-    
-
+    let text = document.querySelector("#notesarea").value;
+    localStorage.setItem("notes", text);
 }
+
+//A function to reset notes from local storage
+const resetNotes = () => {
+    let text = localStorage.getItem("notes");
+    document.querySelector("#notesarea").value = text;
+}
+
+//Adding event listener for #notesarea
+let notes = document.querySelector("#notesarea");
+notes.addEventListener("blur", saveNotes, true);
 
 
 //calling a function to fill the dates
@@ -131,3 +140,5 @@ fillDates();
 //calling a function to reset the tasks
 resetTasks();
 
+//calling a function to reset the notes
+resetNotes();
